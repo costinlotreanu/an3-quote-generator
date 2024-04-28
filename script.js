@@ -7,8 +7,8 @@ const loader = document.querySelector('#loader');
 const container = document.querySelector('#quote-container');
 
 // onload
-getQuote();
-btnNewQuote.addEventListener('click', getQuote);
+getQuoteFromApi();
+btnNewQuote.addEventListener('click', getQuoteFromApi);
 btnTwitter.addEventListener('click', tweet);
 
 async function getQuoteFromApi() {
