@@ -8,34 +8,29 @@ const container = document.querySelector('#quote-container');
 
 // onload
 getQuote();
-
-// event listener
 btnNewQuote.addEventListener('click', getQuote);
 btnTwitter.addEventListener('click', tweet);
 
-// getQuote API
-async function getQuote() {
-  load();
+async function getQuoteFromApi() {
+  showLoadingSpinner();
   const APIurl =
     'https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en';
+  // use proxy to avoid CORS error from API
   const url = 'https://corsproxy.io/?' + encodeURIComponent(APIurl);
   try {
     const response = await fetch(url);
     const data = await response.json();
-    // Unknow author if no value
     data.quoteAuthor = data.quoteAuthor ? data.quoteAuthor : 'Unknown';
-
     // Show quote
     quote.innerText = data.quoteText;
     author.innerText = data.quoteAuthor;
-    loadComplete();
+    removeLoadingSpinner();
   } catch (error) {
-    getQuote();
     console.log(error);
+    getQuote();
   }
 }
 
-// Tweet (X platform now)
 function tweet() {
   const textTweet = quote.innerText;
   const authorTweet = author.innerText;
@@ -43,13 +38,12 @@ function tweet() {
   window.open(url, '_blank');
 }
 
-// loader animation
-function load() {
+function showLoadingSpinner() {
   loader.hidden = false;
   container.hidden = true;
 }
 
-function loadComplete() {
+function removeLoadingSpinner() {
   if (!loader.hidden) {
     container.hidden = false;
     loader.hidden = true;
