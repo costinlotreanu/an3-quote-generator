@@ -27,7 +27,7 @@ async function getQuoteFromApi() {
     removeLoadingSpinner();
   } catch (error) {
     console.log(error);
-    getQuote();
+    getQuoteFromApi();
   }
 }
 
