@@ -34,7 +34,7 @@ async function getQuoteFromApi() {
 function tweet() {
   const textTweet = quote.innerText;
   const authorTweet = author.innerText;
-  const url = `https://twitter.com/intent/tweet?text=${textTweet} - ${authorTweet}`;
+  const url = `https://twitter.com/intent/tweet?text=${textTweet}%20-%20${authorTweet}`;
   window.open(url, '_blank');
 }
 
