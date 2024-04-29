@@ -45,7 +45,7 @@ function showLoadingSpinner() {
 
 function removeLoadingSpinner() {
   if (!loader.hidden) {
-    container.hidden = false;
     loader.hidden = true;
+    container.hidden = false;
   }
 }
